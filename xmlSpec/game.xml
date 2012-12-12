@@ -1,0 +1,79 @@
+<?xml version = "1.0"?>
+
+<GameData>
+
+<view>
+  <viewWidth>832</viewWidth>
+  <viewHeight>400</viewHeight>
+</view>
+
+<screen>
+  <worldWidth>1500</worldWidth>
+  <worldHeight>400</worldHeight>
+</screen>
+
+<Font name="font">
+  <font>font/pirulen.ttf</font>
+  <fontSize>14</fontSize>
+</Font>
+
+<maxStringSize>50</maxStringSize>
+
+<background>
+  <back>images/drawing1.bmp</back>
+  <viewWidth>0</viewWidth>
+  <viewHeight>0</viewHeight>
+</background>
+
+<bg>
+	<bgImage>images/bg.bmp</bgImage>
+	<bgWidth>832</bgWidth>
+	<bgHeight>188</bgHeight>
+	<bgSrcX>0</bgSrcX>
+	<bgSrcY>0</bgSrcY>
+</bg>
+
+<bullet>
+	<bulletImg>images/bullet.bmp</bulletImg>
+	<bulletWidth>6</bulletWidth>
+	<bulletHeight>6</bulletHeight>
+</bullet>
+
+<redorb>
+	<redorbFile>images/hero_f.bmp</redorbFile>
+  <redorbSrcX>0</redorbSrcX>
+  <redorbSrcY>0</redorbSrcY>
+  <redorbWidth>40</redorbWidth>
+  <redorbHeight>80</redorbHeight>
+  <redorbLoc redorbX="40" redorbY="120"/>
+  <redorbSpeed redorbXspeed="100" redorbYspeed="0"/>
+  <redorbMaxSpeed redorbMaxXspeed="0" redorbMaxYspeed="0"/>
+  <redorbTransparency>true</redorbTransparency>
+</redorb>
+
+<orbChunk>
+	<orbChunkFile>images/hero_f.bmp</orbChunkFile>
+  <orbChunkSrcX>0</orbChunkSrcX>
+  <orbChunkSrcY>0</orbChunkSrcY>
+  <orbChunkWidth>40</orbChunkWidth>
+  <orbChunkHeight>80</orbChunkHeight>
+  <orbChunkLoc orbChunkX="40" orbChunkY="120"/>
+  <orbChunkSpeed orbChunkXspeed="100" orbChunkYspeed="0"/>
+  <redorbChunkMaxSpeed redorbChunkMaxXspeed="0" redorbChunkMaxYspeed="0"/>
+  <orbChunkTransparency>true</orbChunkTransparency>
+	<orbChunkSize>9</orbChunkSize>
+	<redorbChunkDistance>200</redorbChunkDistance>
+</orbChunk>
+
+<bullet>
+	<bulletFile>images/bullet.bmp</bulletFile>
+	<bulletWidth>3</bulletWidth>
+	<bulletHeight>3</bulletHeight>
+	<bulletSpeed bulletXspeed="150" bulletYspeed="0"/>
+	<bulletMaxSpeed bulletMaxXspeed="150" bulletMaxYspeed="0"/>
+	<bulletTransparency>true</bulletTransparency>
+</bullet>
+
+<spriteCount>5</spriteCount>
+
+</GameData>

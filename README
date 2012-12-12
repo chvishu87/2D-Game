@@ -1,0 +1,28 @@
+Name: Viswanath Chennuru
+
+Email: vchennu@g.clemson.edu
+
+Date: 10/24/2012
+
+Proj No: 2
+
+Description:
+	1. The animation has a background and some multiframe sprites that keep moving.
+	2. The SDL_Surface and Frames classes are implemented as flyweight pattern and they have factory classes.
+	3. The Sprite class has a spriteManager that is used by the manager class. The sprite manager provides the manager with the sprites it askes for.
+	4. The FrameFacotry is used by spriteManager in the creation of the sprites and the SurfaceFactory is used by the FrameFactory in creating the frames.
+
+To change the XML file and the animation:
+	1. The number of characters in the animation can be changed by changing the <spriteCount> tag in xmlSpec/game.xml
+	2. The length of the world can be changed by changing the <worldWidth> tag in xmlSpec/game.xml
+
+The Specs that I implemented are:
+	1. The multiframe sprites can be tracked. The sprite being tracked can be changed be pressing 't'.
+	2. The animation can be paused by pressing 'p' and is resumed by pressing 'p' again.
+	3. The animation has a help feature that illustrated all the options available for the animation. It can be seen by pressing the 'F1' key and can be closed by pressing the 'F1' key again.
+
+The Specs that I was unable to implement are:
+	1. The L system is not implemented.
+
+Extras:
+	1. No errors or warnings during the execution.
