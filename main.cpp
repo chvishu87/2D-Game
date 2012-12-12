@@ -6,7 +6,7 @@ Gamedata* Gamedata::instance;
 
 int main(int, char*[]) {
    try {
-      MainManager game_manager;//Manager game_manager;
+      Manager game_manager;
       game_manager.play();
    }
    catch (const string& msg) { std::cout << msg << std::endl; }
