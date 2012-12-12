@@ -15,7 +15,7 @@ public:
   Sprite(const Vector2f& pos, const Vector2f& vel,
 				 const string& n, const Frame* fm);
   Sprite(const Sprite& s);
-  virtual ~Sprite() { std::cout <<"Sprite destrucotr"<<name<<std::endl; } 
+  //virtual ~Sprite() { std::cout <<"Sprite destrucotr"<<name<<std::endl; } 
   Sprite& operator=(const Sprite&);
 
   const string& getName() const { return name; }

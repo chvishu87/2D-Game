@@ -1,7 +1,6 @@
 // Brian Malloy        Game Construction
 
-//#include "manager.h"
-#include "mainManager.h"
+#include "manager.h"
 Gamedata* Gamedata::instance;
 
 int main(int, char*[]) {

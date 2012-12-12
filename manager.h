@@ -18,13 +18,12 @@
 #include "collisionStrategy.h"
 #include "explodingSprite.h"
 #include "sound.h"
-#include "compositeManager.h"
 
-class Manager:public CompositeManager {
+class Manager {
 public:
   Manager ();
   ~Manager ();
-  virtual MODE play();
+  void play();
 
 private:
   const bool env;

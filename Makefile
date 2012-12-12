@@ -13,9 +13,6 @@ LDFLAGS = `sdl-config --libs` -lSDL_ttf -lSDL_image -lexpat -lSDL_mixer
 OBJS = \
 	main.o \
 	manager.o \
-	mainManager.o \
-	menuManager.o \
-	gui.o \
 	world.o \
 	viewport.o \
 	gamedata.o \
@@ -46,11 +43,8 @@ EXEC = run
 $(EXEC): $(OBJS)
 	g++ $(CXXFLAGS) -o $@ $(OBJS) $(LDFLAGS)
 
-main.o: main.cpp mainManager.h
-manager.o: manager.cpp manager.h ioManager.h clock.h gamedata.h sprite.h multiFrameSprite.h world.h viewport.h spriteManager.h bulletFactory.h collisionStrategy.h  explodingSprite.h sound.h compositeManager.h
-mainManager.o: mainManager.cpp mainManager.h compositeManager.h manager.h menuManager.h
-menuManager.o: menuManager.cpp menuManager.h ioManager.h gui.h clock.h world.h gamedata.h compositeManager.h
-gui.o: gui.cpp gui.h ioManager.h frame.h parseXML.h vector2f.h 
+main.o: main.cpp
+manager.o: manager.cpp manager.h gamedata.h ioManager.h sprite.h clock.h explodingSprite.h sound.h
 ioManager.o: ioManager.cpp ioManager.h
 world.o: world.cpp world.h
 viewport.o: viewport.cpp viewport.h
@@ -58,7 +52,7 @@ parseXML.o: parseXML.cpp parseXML.h
 gamedata.o: gamedata.cpp gamedata.h parseXML.h
 clock.o: clock.cpp clock.h
 vector2f.o: vector2f.cpp vector2f.h
-frame.o: frame.cpp frame.h vector2f.h
+frame.o: frame.cpp frame.h
 sprite.o: sprite.cpp sprite.h drawable.h frame.h
 multiFrameSprite.o: multiFrameSprite.cpp multiFrameSprite.h drawable.h frame.h
 spriteManager.o: spriteManager.cpp spriteManager.h sprite.h multiFrameSprite.h frameFactory.h

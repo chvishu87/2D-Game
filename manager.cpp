@@ -26,7 +26,6 @@ Manager::~Manager() {
 }
 
 Manager::Manager() :
-	CompositeManager(),
   env( SDL_putenv(const_cast<char*>("SDL_VIDEO_CENTERED=center")) ),
 	helpFlag(false),
   gdata( Gamedata::getInstance() ),
@@ -49,6 +48,7 @@ Manager::Manager() :
 	hero(sp->getHero()),
 	strategies(),
 	collisionStrategy( NULL ),
+	//collisionFound( false ),
 	redorb(),
 	redorbEx(),
 	currentObject(0),
@@ -144,14 +144,16 @@ while(i != li.end()) {
 } 
 }
 
-Manager::MODE Manager::play() {
+void Manager::play() {
 SDL_Event event;
+
 bool done = false;
 bool keyCatch = false;
 while ( not done ) {
   draw();
   SDL_Flip(screen);
   Uint32 ticks = clock.getElapsedTicks();
+	
   update(ticks);
 	checkForCollision();
 	SDL_PollEvent(&event);
@@ -167,7 +169,7 @@ while ( not done ) {
 						currentObject = (currentObject+1)%redorb.size();
 						viewport.setObjectToTrack(redorb[currentObject]);
 					}
-					break;
+          break;
 				case SDLK_z			 :
 					hero->shoot(clock.getTicks());
 					sound[1];
@@ -200,9 +202,8 @@ while ( not done ) {
 						else clock.pause();
 					}
           break;
-        default          :
-					break;
+        default          : break;
       }
-	}
-}
+    }
+ }
 }

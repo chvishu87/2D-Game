@@ -8,7 +8,7 @@
 </view>
 
 <screen>
-  <worldWidth>1500</worldWidth>
+  <worldWidth>1000</worldWidth>
   <worldHeight>400</worldHeight>
 </screen>
 

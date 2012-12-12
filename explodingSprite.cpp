@@ -11,7 +11,7 @@ ExplodingSprite::ExplodingSprite(const Sprite& s) :
 		//std::cout<<frame->getWidth()<<'\t'<<frame->getHeight()<<std::endl;
 		//exit(1);
   	makeChunks(Gamedata::getInstance()->getXmlInt("orbChunkSize"));
-		std::cout<<chunks.size()<<std::endl;
+		//std::cout<<chunks.size()<<std::endl;
 }
 
 ExplodingSprite::~ExplodingSprite() {

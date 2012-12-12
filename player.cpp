@@ -56,7 +56,7 @@ void Player::left(Uint32 ticks) {
 
 void Player::shoot(int ticks) {
 	//std::cout<<getDirection()<<std::endl;
-	std::cout<<ticks<<'\t'<<(ticks-bulletGap)<<std::endl;
+	//std::cout<<ticks<<'\t'<<(ticks-bulletGap)<<std::endl;
 	if((ticks-bulletGap) >= 250) {
 		//std::cout<<"inside"<<std::endl; 
 		if(getDirection() == 1)
