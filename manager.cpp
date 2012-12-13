@@ -1,4 +1,5 @@
 #include <cmath>
+#include <sstream>
 #include "manager.h"
 
 Manager::~Manager() { 
@@ -12,7 +13,6 @@ Manager::~Manager() {
 		delete (*itr);
 		++itr;
 	}
-	//strategies.clear();
 
 	redorb.clear();
 	if(redorbEx.size() > 0) {
@@ -49,12 +49,12 @@ Manager::Manager() :
 	hero(sp->getHero()),
 	strategies(),
 	collisionStrategy( NULL ),
-	//collisionFound( false ),
 	redorb(),
 	redorbEx(),
 	currentObject(0),
 	sound(),
-	del(false)
+	del(false),
+	win(false)
 {
   if (SDL_Init(SDL_INIT_VIDEO) != 0) {
     throw string("Unable to initialize SDL: ");
@@ -68,8 +68,6 @@ Manager::Manager() :
 
 	collisionStrategy = strategies[1];
 
-//  viewport.setObjectToTrack(redorb[currentObject]);
-  //atexit(SDL_Quit);
 	clock.pause();
 }
 
@@ -114,7 +112,7 @@ void Manager::update(Uint32 ticks) {
 		std::vector<Drawable*>::iterator it = redorb.begin();
 		while(it != redorb.end()) {
 			(*it)->update(ticks);
-			(static_cast<Enemy*>(*it))->shoot(tick, hero->X(), hero->getDirection());
+			(static_cast<Enemy*>(*it))->shoot(tick, hero->X());
 			++it;
 		}
 	}
@@ -154,16 +152,22 @@ while(i != li.end()) {
 	if(!collisionFound)
 		++i;
 }
-/*while( sprite  != redorb.end() ) {
-	if( collisionStrategy->execute(*hero, *(*sprite)) ) {
-		redorbEx.push_back( new ExplodingSprite( *hero ) );
-		del = true;
-		//delete hero;
-		break;
+std::list<Sprite*>& enmy = bullets.getEnemyBulletList();
+std::list<Sprite*>::iterator enmitr = enmy.begin();
+while( enmitr  != enmy.end() ) {
+	if( collisionStrategy->execute(*hero, *(*enmitr)) ) {
+		hero->life = hero->life - 1;
+		ili.push_back(*enmitr);
+		enmitr = enmy.erase(enmitr);
 	} else {
-		++sprite;
+		enmitr++;
 	}
-}*/
+	if( hero->life <= 0) {
+		del = true;
+		redorbEx.push_back( new ExplodingSprite( *hero ) );
+		break;
+	}
+}
 }
 
 void Manager::play() {
@@ -174,6 +178,9 @@ bool done = false;
 bool keyCatch = false;
 while ( not done ) {
   draw();
+	std::stringstream strm;
+	strm << hero->life;
+	io.printMessageAt("Life: "+strm.str(), 20, 20);
   SDL_Flip(screen);
   Uint32 ticks = clock.getElapsedTicks();
 	
@@ -182,6 +189,10 @@ while ( not done ) {
 	if(del) {
 		done = true;
 		break;
+	}
+	if( (hero->X()) >= (gdata->getXmlInt("worldWidth") - 50) ) {
+		win = true;
+		break;		
 	}
 	SDL_PollEvent(&event);
     if (event.type == SDL_QUIT) { break; }
@@ -198,63 +209,40 @@ while ( not done ) {
 				case SDLK_F1		 :	break;
         case SDLK_p      :	break;
         default          : break;
-      } //code is added till here.
+      } 
 		}
     if(event.type == SDL_KEYDOWN) {
-			/*std::cout<<event.key.keysym.sym<<'\t'<<SDLK_ESCAPE<<std::endl;
-			if( event.key.keysym.sym & SDLK_ESCAPE ) {
-				done = true;
-				clock.pause();
-			}*/
 			
-			//std::cout<<event.key.keysym.sym<<'\t'<<SDLK_ESCAPE<<std::endl;
       switch ( event.key.keysym.sym ) {
         case SDLK_ESCAPE : bitset |= 1<<1;break;//done = true; clock.pause(); break;
         case SDLK_q      : bitset |= 1<<2;break;//done = true; break;
         case SDLK_t			 :
 				 	if(!keyCatch) {
 						bitset |= 1<<3;
-						//keyCatch = true;
-						//currentObject = (currentObject+1)%redorb.size();
-						//viewport.setObjectToTrack(redorb[currentObject]);
 					}
           break;
 				case SDLK_z			 :
 					bitset |= 1<<4;
-					/*hero->shoot(clock.getTicks());
-					sound[1];*/
 					break;
 				case SDLK_RIGHT  :
 					bitset |= 1<<5;
-					//hero->right(ticks);
 					break;
 				case SDLK_LEFT	 :
 					bitset |= 1<<6;
-					//hero->left(ticks);
 					break;
 				case SDLK_SPACE  :
 					bitset |= 1<<7;
-					//hero->jump();
 					break;
 				case SDLK_F1		 :
 					bitset |= 1<<8;
 					if (!keyCatch) {
 						keyCatch = true;
-						/*if(!helpFlag) {
-							helpFlag = true;
-							clock.pause();
-						}	else {
-							helpFlag = false;
-							clock.unpause();
-						}*/
 					}
 					break;
         case SDLK_p      :
 					bitset |= 1<<9;
 					if((!keyCatch) && (!helpFlag)) {
 						keyCatch = true;
-						//if(clock.isPaused()) clock.unpause();
-						//else clock.pause();
 					}
           break;
         default          : break;
@@ -286,5 +274,22 @@ while ( not done ) {
 					else clock.pause();
 				}
 		}
+	}
+	if(del) {
+		Uint32 i = 0;
+		while(i < 3000) {
+			Uint32 j = clock.getElapsedTicks();
+			i = i + j;
+			update(j);
+			draw();
+			SDL_Flip(screen);
+		}}
+	if(del || win) {
+		if(del) 
+			io.printMessageAt("You Loose", 400, 300);
+		if(win)
+			io.printMessageAt("You Win", 400, 300);
+		SDL_Flip(screen);
+		SDL_Delay(2000);
 	}
 }

@@ -17,6 +17,7 @@ public:
 	void right(Uint32);
 	void left(Uint32);
 	void shoot(int ticks);
+	int life;
 private:
 	BulletFactory& bullfacInstance;
 	int jmp;

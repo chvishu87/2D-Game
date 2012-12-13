@@ -55,6 +55,38 @@ Frame* FrameFactory::getFrame(int name) {
 													gdata->getXmlInt("bulletWidth"),
 													gdata->getXmlInt("bulletHeight"), 0, 0);
 				break;
+		case 8:
+				frame = new Frame(surfact.getSurface(3),
+													gdata->getXmlInt("redorbWidth"),
+													gdata->getXmlInt("redorbHeight"), gdata->getXmlInt("redorbWidth")*0,0);
+				
+				break;
+		case 9:
+				frame = new Frame(surfact.getSurface(3),
+													gdata->getXmlInt("redorbWidth"),
+													gdata->getXmlInt("redorbHeight"), gdata->getXmlInt("redorbWidth")*1, 0);
+				break;
+		case 10:
+				frame = new Frame(surfact.getSurface(3),
+													gdata->getXmlInt("redorbWidth"),
+													gdata->getXmlInt("redorbHeight"), gdata->getXmlInt("redorbWidth")*2, 0);
+				break;
+		case 11:				
+				frame = new Frame(surfact.getSurface(3),
+													gdata->getXmlInt("redorbWidth"),
+													gdata->getXmlInt("redorbHeight"), gdata->getXmlInt("redorbWidth")*3, 0);
+				break;
+		case 12:
+				frame = new Frame(surfact.getSurface(3),
+													gdata->getXmlInt("redorbWidth"),
+													gdata->getXmlInt("redorbHeight"), gdata->getXmlInt("redorbWidth")*4, 0);
+				break;
+		case 13:
+				frame = new Frame(surfact.getSurface(3),
+													gdata->getXmlInt("redorbWidth"),
+													gdata->getXmlInt("redorbHeight"), gdata->getXmlInt("redorbWidth")*5, 0);
+				break;
+
 	  default:
 				throw("Frame not available");
 		}

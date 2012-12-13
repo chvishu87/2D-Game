@@ -10,3 +10,7 @@ void World::draw() const {
   frame2.draw(0, viewY, frameWidth-viewX, 0); 
 }
 
+void World::drawBG() const {
+	frame1.draw(0,0,0,0);
+	frame2.draw(0,0,832,0);
+}

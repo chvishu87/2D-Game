@@ -8,7 +8,7 @@
 </view>
 
 <screen>
-  <worldWidth>1000</worldWidth>
+  <worldWidth>2000</worldWidth>
   <worldHeight>400</worldHeight>
 </screen>
 
@@ -38,6 +38,22 @@
 	<bulletWidth>6</bulletWidth>
 	<bulletHeight>6</bulletHeight>
 </bullet>
+
+<blueorb>
+	<blueorbFile>images/hero_fc.bmp</blueorbFile>
+  <blueorbSrcX>0</blueorbSrcX>
+  <blueorbSrcY>0</blueorbSrcY>
+  <blueorbWidth>40</blueorbWidth>
+  <blueorbHeight>80</blueorbHeight>
+  <blueorbLoc blueorbX="40" blueorbY="120"/>
+  <blueorbSpeed blueorbXspeed="100" blueorbYspeed="0"/>
+  <blueorbMaxSpeed blueorbMaxXspeed="0" blueorbMaxYspeed="0"/>
+  <blueorbTransparency>true</blueorbTransparency>
+	<blueorbChunkDistance>200</blueorbChunkDistance>
+  <blueorbChunkMaxSpeed blueorbChunkMaxXspeed="0" blueorbChunkMaxYspeed="0"/>
+  <blueorbChunkSpeed blueorbChunkXspeed="100" blueorbChunkYspeed="0"/>
+	<blueorbChunkSize>9</blueorbChunkSize>
+</blueorb>
 
 <redorb>
 	<redorbFile>images/hero_f.bmp</redorbFile>
@@ -78,6 +94,6 @@
 	<bulletTransparency>true</bulletTransparency>
 </bullet>
 
-<spriteCount>1</spriteCount>
+<spriteCount>5</spriteCount>
 
 </GameData>

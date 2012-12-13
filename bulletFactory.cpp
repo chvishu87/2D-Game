@@ -23,6 +23,15 @@ BulletFactory::~BulletFactory() {
 	}
 	activeBullets.clear();
 
+	if(activeEnemyBullets.size() > 0) {
+		std::list<Sprite*>::iterator it = activeEnemyBullets.begin();
+		while(it != activeEnemyBullets.end()) {
+			delete (*it);
+			++it;
+		}
+	}
+	activeEnemyBullets.clear();
+
 	if(inactiveBullets.size() > 0) {
 		std::list<Sprite*>::iterator it = inactiveBullets.begin();
 		while(it != inactiveBullets.end()) {
@@ -110,7 +119,7 @@ void BulletFactory::draw() {
 }
 
 void BulletFactory::update(Uint32 ticks) {
-	std::cout<<activeEnemyBullets.size()<<std::endl;
+	//std::cout<<activeEnemyBullets.size()<<std::endl;
 	std::list<Sprite*>::iterator it = activeBullets.begin();
 	while (it != activeBullets.end()) {
 		(*it)->update(ticks);

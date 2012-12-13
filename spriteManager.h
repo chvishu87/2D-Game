@@ -28,16 +28,12 @@ public:
 
 	Player* getHero();
 	Enemy* getPerson();
-//	MultiFrameSprite* getPerson();
-//	Drawable* getHero();
-//	MultiFrameSprite* getHero();
 
 private:
-//	std::vector<Sprite*> spVector;								// required later.
-//	std::vector<MultiFrameSprite*> mspVector;
 	std::vector<Drawable*> spVector;
 	FrameFactory& factoryInstance;
 	Gamedata* gdata;
+	int gap;
 	SpriteManager(const SpriteManager&);
 	SpriteManager& operator=(SpriteManager&);
 };

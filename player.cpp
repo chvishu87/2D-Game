@@ -3,12 +3,12 @@
 
 Player::Player(const Vector2f& pos, const Vector2f& vel,
 			const string& n, const vector<Frame*>& fm) : 
-			MultiFrameSprite(pos, vel, n, fm),
+			MultiFrameSprite(pos, vel, n, fm),life(10),
 			bullfacInstance(BulletFactory::getInstance()),jmp(0),p_height(0),bulletGap(0) {}
 
 
 Player::Player(const Player& s) :
-	MultiFrameSprite(s.getPosition(), s.getVelocity(), s.name, s.frames),
+	MultiFrameSprite(s.getPosition(), s.getVelocity(), s.name, s.frames),life(10),
 	bullfacInstance(BulletFactory::getInstance()),jmp(0),p_height(0),bulletGap(0) {}
 
 void Player::jump() {

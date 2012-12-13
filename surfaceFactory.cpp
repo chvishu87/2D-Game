@@ -34,6 +34,9 @@ SDL_Surface* SurfaceFactory::getSurface (int name) {
 			case 2:
 				surface = io.loadAndSet(gdata->getXmlStr("bulletImg"), true);
 				break;
+			case 3:
+				surface = io.loadAndSet(gdata->getXmlStr("blueorbFile"), true);
+				break;
 			default:
 				throw("Surface is not available");
 		}

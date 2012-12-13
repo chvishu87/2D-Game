@@ -12,7 +12,7 @@ MenuManager::MenuManager() :
 	world(new Frame(screenSurface,
 						gdata->getXmlInt("viewWidth"),
 						gdata->getXmlInt("viewHeight"), 0, 0), 2),
-	//clock( Clock::getInstance() ),
+	clock( Clock::getInstance() ),
   //bakColor(),
   menu(),
   numberOfStars(-1)
@@ -20,25 +20,18 @@ MenuManager::MenuManager() :
   if (SDL_Init(SDL_INIT_VIDEO) != 0) {
     throw string("Unable to initialize SDL: ");
   }
-  //bakColor.r = Gamedata::getInstance()->getXmlInt("backgroundRed");
-  //bakColor.g = Gamedata::getInstance()->getXmlInt("backgroundGreen");
-  //bakColor.b = Gamedata::getInstance()->getXmlInt("backgroundBlue");
   atexit(SDL_Quit); 
 }
 
 void MenuManager::drawBackground() const {
-	world.draw();
-	//SDL_FillRect( screen, NULL, SDL_MapRGB(screen->format, 255,255,255) );
-	//std::cout<<"drawing"<<std::endl;
-  //SDL_Rect dest = {0, 0, 0, 0};
-  //SDL_BlitSurface( screen, NULL, screen, &dest );
+	world.drawBG();
 }
 
 void MenuManager::getNumberOfStars() {
   IOManager& io = IOManager::getInstance().getInstance();
   SDL_Event event;
   bool done = false;
-  bool nameDone = false;
+  //bool nameDone = false;
   const string msg("How many yellow stars:\\n press ESC to return to menu ");
   io.clearString();
   while ( not done ) {
@@ -57,27 +50,26 @@ void MenuManager::getNumberOfStars() {
     }
     drawBackground();
     io.printStringAfterMessage(msg, 20, 120);
-    /*if ( nameDone ) {
-      std::string number = io.getString();
-      std::stringstream strm;
-      strm << number;
-      strm >> numberOfStars;
-      strm.clear(); // clear error flags
-      strm.str(std::string()); // clear contents
-      strm << "Okay -- you'll see " << numberOfStars << " stars";
-      cout << strm.str() << endl;
-      io.printMessageAt(strm.str(), 20, 160);
-      SDL_Flip(screen);
-      SDL_Delay(400);
-      done = true;
-    }*/
+   
     if ( !done ) {
       SDL_Flip(screen);
     }
   }
 }
 
+void MenuManager::story() {
+		drawBackground();
+		io.printMessageAt("Contra",350,10);
+		io.printMessageAt("Before Five Years: The US Intelligenve recives information on the",10,110);
+		io.printMessageAt("uprising terror groups",300,150);
+		io.printMessageAt("Before Two Years: US observes invrease in terror groups activities",10,200);
+		io.printMessageAt("Current: US decide to send a marine on an operation to destroy them",10,250);
+		SDL_Flip(screen);
+		SDL_Delay(5000);
+}
+
 void MenuManager::play() {
+	story();
   bool keyCatch = false; // To get only 1 key per keydown
   SDL_Event event;
   Manager gameMan;
@@ -110,8 +102,8 @@ void MenuManager::play() {
               SDL_Delay(250);
               done = true;
             }
-            if ( menu.getIconClicked() == "Parameters" ) {
-              getNumberOfStars();
+            if ( menu.getIconClicked() == "Help" ) {
+              //getNumberOfStars();
               //gameMan.setNumberOfStars( numberOfStars );
             }
           }

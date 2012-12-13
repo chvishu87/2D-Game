@@ -53,6 +53,7 @@ private:
 
 	SDLSound sound;
 	bool del;
+	bool win;
 	void checkForCollision();
 	void setRedOrb();
   void draw() const;

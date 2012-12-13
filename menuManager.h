@@ -23,7 +23,7 @@ private:
 	SDL_Surface *screen;
   SDL_Surface *screenSurface;
 	World world;
-  //const Clock& clock;
+  Clock& clock;
 
   //SDL_Color bakColor;
   Menu menu;
@@ -33,4 +33,5 @@ private:
   MenuManager(const MenuManager&);
   MenuManager& operator=(const MenuManager&);
   void getNumberOfStars();
+	void story();
 };

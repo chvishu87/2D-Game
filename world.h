@@ -18,6 +18,7 @@ public:
   {}
   void update();
   void draw() const;
+	void drawBG() const;
 private:
   Frame const frame1;
   Frame const frame2;
