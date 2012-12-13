@@ -7,6 +7,7 @@ using std::string;
 #include "ioManager.h"
 #include "menu.h"
 #include "clock.h"
+#include "world.h"
 
 class MenuManager {
 public:
@@ -16,10 +17,15 @@ public:
 
 private:
   bool env;
-  SDL_Surface *screen;
-  const Clock& clock;
+	const Gamedata* gdata;
+	const IOManager& io;
+	
+	SDL_Surface *screen;
+  SDL_Surface *screenSurface;
+	World world;
+  //const Clock& clock;
 
-  SDL_Color bakColor;
+  //SDL_Color bakColor;
   Menu menu;
   int numberOfStars;
 

@@ -13,6 +13,8 @@ LDFLAGS = `sdl-config --libs` -lSDL_ttf -lSDL_image -lexpat -lSDL_mixer
 OBJS = \
 	main.o \
 	manager.o \
+	menuManager.o \
+	menu.o \
 	world.o \
 	viewport.o \
 	gamedata.o \
@@ -45,6 +47,8 @@ $(EXEC): $(OBJS)
 
 main.o: main.cpp
 manager.o: manager.cpp manager.h gamedata.h ioManager.h sprite.h clock.h explodingSprite.h sound.h
+menuManager.o: menuManager.cpp menuManager.h ioManager.h menu.h
+menu.o: menu.cpp menu.h frame.h ioManager.h vector2f.h parseXML.h 
 ioManager.o: ioManager.cpp ioManager.h
 world.o: world.cpp world.h
 viewport.o: viewport.cpp viewport.h

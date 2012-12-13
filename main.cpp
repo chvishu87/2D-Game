@@ -1,11 +1,12 @@
 // Brian Malloy        Game Construction
 
-#include "manager.h"
+//#include "manager.h"
+#include "menuManager.h"
 Gamedata* Gamedata::instance;
 
 int main(int, char*[]) {
    try {
-      Manager game_manager;
+      MenuManager game_manager;
       game_manager.play();
    }
    catch (const string& msg) { std::cout << msg << std::endl; }

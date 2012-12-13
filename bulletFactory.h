@@ -15,6 +15,7 @@ public:
 	void draw();
 	void update(Uint32);
 	std::list<Sprite*>& getBulletList() { return activeBullets; }
+	std::list<Sprite*>& getInactiveBulletList() { return inactiveBullets; }
 private:
 	std::list<Sprite*> activeBullets;
 	std::list<Sprite*> inactiveBullets;

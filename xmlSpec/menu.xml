@@ -1,82 +1,33 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <MenuSpec>
 
-<sprite>
-  <newFile>images/new.png</newFile>
-  <newWidth>80</newWidth>
-  <newHeight>80</newHeight>
-  <newSrcX>0</newSrcX>
-  <newSrcY>0</newSrcY>
-  <newSpeedX>0</newSpeedX>
-  <newSpeedY>0</newSpeedY>
-  <newX>300</newX>
-  <newY>80</newY>
-  <newTransparency>true</newTransparency>
-</sprite>
+<words>
+  <wordsNumber>4</wordsNumber>
+  <wordsX>300</wordsX>
+  <wordsY>100</wordsY>
+  <wordsSpaceX>70</wordsSpaceX>
+  <wordsSpaceY>50</wordsSpaceY>
+  <words0>Start Game</words0>
+  <words1>Parameters</words1>
+  <words2>Help</words2>
+  <words3>Exit</words3>
+</words>
 
-<sprite>
-  <openFile>images/open.png</openFile>
-  <openWidth>80</openWidth>
-  <openHeight>80</openHeight>
-  <openSrcX>0</openSrcX>
-  <openSrcY>0</openSrcY>
-  <openSpeedX>0</openSpeedX>
-  <openSpeedY>0</openSpeedY>
-  <openX>300</openX>
-  <openY>170</openY>
-  <openTransparency>true</openTransparency>
-</sprite>
-
-<sprite>
-  <saveFile>images/save.png</saveFile>
-  <saveWidth>80</saveWidth>
-  <saveHeight>80</saveHeight>
-  <saveSrcX>0</saveSrcX>
-  <saveSrcY>0</saveSrcY>
-  <saveSpeedX>0</saveSpeedX>
-  <saveSpeedY>0</saveSpeedY>
-  <saveX>300</saveX>
-  <saveY>260</saveY>
-  <saveTransparency>true</saveTransparency>
-</sprite>
-
-<sprite>
-  <helpFile>images/help.png</helpFile>
-  <helpWidth>80</helpWidth>
-  <helpHeight>80</helpHeight>
-  <helpSrcX>0</helpSrcX>
-  <helpSrcY>0</helpSrcY>
-  <helpSpeedX>0</helpSpeedX>
-  <helpSpeedY>0</helpSpeedY>
-  <helpX>300</helpX>
-  <helpY>350</helpY>
-  <helpTransparency>true</helpTransparency>
-</sprite>
-
-<sprite>
+<clickoff>
   <clickoffFile>images/clickoff.png</clickoffFile>
   <clickoffWidth>40</clickoffWidth>
   <clickoffHeight>40</clickoffHeight>
   <clickoffSrcX>0</clickoffSrcX>
   <clickoffSrcY>0</clickoffSrcY>
-  <clockoffSpeedX>0</clockoffSpeedX>
-  <clockoffSpeedY>0</clockoffSpeedY>
-  <clickoffX>0</clickoffX>
-  <clickoffY>0</clickoffY>
   <clickoffTransparency>false</clickoffTransparency>
-</sprite>
+</clickoff>
 
-<sprite>
+<clickon>
   <clickonFile>images/clickon.png</clickonFile>
   <clickonWidth>40</clickonWidth>
   <clickonHeight>40</clickonHeight>
   <clickonSrcX>0</clickonSrcX>
   <clickonSrcY>0</clickonSrcY>
-  <clickonSpeedX>0</clickonSpeedX>
-  <clickonSpeedY>0</clickonSpeedY>
-  <clickonX>0</clickonX>
-  <clickonY>0</clickonY>
   <clickonTransparency>false</clickonTransparency>
-</sprite>
-
+</clickon>
 </MenuSpec>

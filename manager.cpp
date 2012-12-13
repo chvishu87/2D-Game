@@ -27,6 +27,7 @@ Manager::~Manager() {
 
 Manager::Manager() :
   env( SDL_putenv(const_cast<char*>("SDL_VIDEO_CENTERED=center")) ),
+	bitset(0),
 	helpFlag(false),
   gdata( Gamedata::getInstance() ),
   io( IOManager::getInstance() ),
@@ -64,10 +65,11 @@ Manager::Manager() :
 	strategies.push_back( new MidPointCollisionStrategy );
 	strategies.push_back( new PerPixelCollisionStrategy );
 
-	collisionStrategy = strategies[2];
+	collisionStrategy = strategies[1];
 
 //  viewport.setObjectToTrack(redorb[currentObject]);
-  atexit(SDL_Quit);
+  //atexit(SDL_Quit);
+	clock.pause();
 }
 
 void Manager::draw() const {
@@ -128,23 +130,30 @@ void Manager::update(Uint32 ticks) {
 void Manager::checkForCollision() {
 std::vector<Drawable*>::iterator sprite = redorb.begin();
 std::list<Sprite*>& li = bullets.getBulletList();
+std::list<Sprite*>& ili = bullets.getInactiveBulletList();
 std::list<Sprite*>::iterator i = li.begin();
 while(i != li.end()) {
+	bool collisionFound = false;
 	while(sprite != redorb.end()) {
 		if ( collisionStrategy->execute(*(*i), *(*sprite) )) { 
 			redorbEx.push_back(new ExplodingSprite(*(static_cast<Sprite*>(*sprite))));
 			sprite = redorb.erase(sprite);
+			ili.push_back(*i);
+			i = li.erase(i);
+			collisionFound = true;
 			sound[6];
 			break;
 		} else {
 			++sprite;
 		}
 	}
-	++i;
-} 
+	if(!collisionFound)
+		++i;
+}
 }
 
 void Manager::play() {
+clock.unpause();
 SDL_Event event;
 
 bool done = false;
@@ -158,10 +167,17 @@ while ( not done ) {
 	checkForCollision();
 	SDL_PollEvent(&event);
     if (event.type == SDL_QUIT) { break; }
-    if(event.type == SDL_KEYUP) { keyCatch = false; }
+    if(event.type == SDL_KEYUP) { std::cout<<event.key.keysym.sym<<std::endl;keyCatch = false; }
     if(event.type == SDL_KEYDOWN) {
+			/*std::cout<<event.key.keysym.sym<<'\t'<<SDLK_ESCAPE<<std::endl;
+			if( event.key.keysym.sym & SDLK_ESCAPE ) {
+				done = true;
+				clock.pause();
+			}*/
+			
+			std::cout<<event.key.keysym.sym<<'\t'<<SDLK_ESCAPE<<std::endl;
       switch ( event.key.keysym.sym ) {
-        case SDLK_ESCAPE : done = true; break;
+        case SDLK_ESCAPE : bitset |= 1<<1;//done = true; clock.pause(); break;
         case SDLK_q      : done = true; break;
         case SDLK_t			 :
 				 	if(!keyCatch) {
@@ -204,6 +220,7 @@ while ( not done ) {
           break;
         default          : break;
       }
+			if(bitset & (1<<1)) {bitset &= ~(1<<1); done = true; clock.pause(); break;}
     }
  }
 }

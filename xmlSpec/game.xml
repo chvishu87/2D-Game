@@ -69,11 +69,11 @@
 	<bulletFile>images/bullet.bmp</bulletFile>
 	<bulletWidth>3</bulletWidth>
 	<bulletHeight>3</bulletHeight>
-	<bulletSpeed bulletXspeed="150" bulletYspeed="0"/>
+	<bulletSpeed bulletXspeed="250" bulletYspeed="0"/>
 	<bulletMaxSpeed bulletMaxXspeed="150" bulletMaxYspeed="0"/>
 	<bulletTransparency>true</bulletTransparency>
 </bullet>
 
-<spriteCount>5</spriteCount>
+<spriteCount>2</spriteCount>
 
 </GameData>

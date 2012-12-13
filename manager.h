@@ -27,6 +27,7 @@ public:
 
 private:
   const bool env;
+	int bitset;
 	bool helpFlag;
   const Gamedata* gdata;
   const IOManager& io;
