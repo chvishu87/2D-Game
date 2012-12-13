@@ -14,6 +14,7 @@ OBJS = \
 	main.o \
 	manager.o \
 	menuManager.o \
+	enemy.o \
 	menu.o \
 	world.o \
 	viewport.o \
@@ -58,8 +59,9 @@ clock.o: clock.cpp clock.h
 vector2f.o: vector2f.cpp vector2f.h
 frame.o: frame.cpp frame.h
 sprite.o: sprite.cpp sprite.h drawable.h frame.h
-multiFrameSprite.o: multiFrameSprite.cpp multiFrameSprite.h drawable.h frame.h
-spriteManager.o: spriteManager.cpp spriteManager.h sprite.h multiFrameSprite.h frameFactory.h
+multiFrameSprite.o: multiFrameSprite.cpp multiFrameSprite.h drawable.h frame.h bulletFactory.h
+enemy.o: enemy.cpp enemy.h bulletFactory.h multiFrameSprite.h 
+spriteManager.o: spriteManager.cpp spriteManager.h sprite.h enemy.h frameFactory.h 
 frameFactory.o: frameFactory.h	frameFactory.cpp frame.h ioManager.h gamedata.h 
 surfaceFactory.o: surfaceFactory.h surfaceFactory.cpp ioManager.h gamedata.h
 frame.o: frame.cpp frame.h ioManager.h

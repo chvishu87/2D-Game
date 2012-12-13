@@ -6,7 +6,8 @@
 #include <cmath>
 
 #include "sprite.h"
-#include "multiFrameSprite.h"
+//#include "multiFrameSprite.h"
+#include "enemy.h"
 #include "player.h"
 #include "frameFactory.h"
 
@@ -26,7 +27,8 @@ public:
 	SpriteManager();
 
 	Player* getHero();
-	MultiFrameSprite* getPerson();
+	Enemy* getPerson();
+//	MultiFrameSprite* getPerson();
 //	Drawable* getHero();
 //	MultiFrameSprite* getHero();
 

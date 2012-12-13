@@ -7,11 +7,12 @@ SpriteManager::SpriteManager():
 	gdata(Gamedata::getInstance())
 	{}
 
-MultiFrameSprite* SpriteManager::getPerson() {
+//MultiFrameSprite* SpriteManager::getPerson() {
+Enemy* SpriteManager::getPerson() {
 	std::vector<Frame*> frameset;
 	for(int i = 1; i <=6 ; i++)
 		frameset.push_back(factoryInstance.getFrame(i));
-	MultiFrameSprite* person = new MultiFrameSprite(Vector2f(rand()%gdata->getXmlInt("worldWidth"),120),
+	/*MultiFrameSprite**/Enemy* person = new /*MultiFrameSprite*/Enemy(Vector2f(rand()%gdata->getXmlInt("worldWidth"),120),
 																	Vector2f(gdata->getXmlInt("redorbXspeed"),gdata->getXmlInt("redorbYspeed")),
 																	"redorb",frameset);
 	spVector.push_back(person);

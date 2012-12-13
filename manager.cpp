@@ -53,7 +53,8 @@ Manager::Manager() :
 	redorb(),
 	redorbEx(),
 	currentObject(0),
-	sound()
+	sound(),
+	del(false)
 {
   if (SDL_Init(SDL_INIT_VIDEO) != 0) {
     throw string("Unable to initialize SDL: ");
@@ -75,7 +76,8 @@ Manager::Manager() :
 void Manager::draw() const {
   world.draw();
 	bgworld.draw();
-	hero->draw();
+	if(not del)			// take care of it laterr.
+		hero->draw();
 	bullets.draw();
 	if(redorbEx.size() > 0) {
 		std::list<ExplodingSprite*>::const_iterator itr = redorbEx.begin();
@@ -136,7 +138,7 @@ while(i != li.end()) {
 	bool collisionFound = false;
 	while(sprite != redorb.end()) {
 		if ( collisionStrategy->execute(*(*i), *(*sprite) )) { 
-			redorbEx.push_back(new ExplodingSprite(*(static_cast<Sprite*>(*sprite))));
+			redorbEx.push_back( new ExplodingSprite( *(static_cast<Sprite*>(*sprite)) ) );
 			sprite = redorb.erase(sprite);
 			ili.push_back(*i);
 			i = li.erase(i);
@@ -149,6 +151,16 @@ while(i != li.end()) {
 	}
 	if(!collisionFound)
 		++i;
+}
+while( sprite  != redorb.end() ) {
+	if( collisionStrategy->execute(*hero, *(*sprite)) ) {
+		redorbEx.push_back( new ExplodingSprite( *hero ) );
+		del = true;
+		//delete hero;
+		break;
+	} else {
+		++sprite;
+	}
 }
 }
 
@@ -165,9 +177,27 @@ while ( not done ) {
 	
   update(ticks);
 	checkForCollision();
+	if(del) {
+		done = true;
+		break;
+	}
 	SDL_PollEvent(&event);
     if (event.type == SDL_QUIT) { break; }
-    if(event.type == SDL_KEYUP) { std::cout<<event.key.keysym.sym<<std::endl;keyCatch = false; }
+    if(event.type == SDL_KEYUP) {
+			keyCatch = false; // new code is added after this line.
+			switch ( event.key.keysym.sym ) {
+        case SDLK_ESCAPE :	break;
+        case SDLK_q      :	break;
+        case SDLK_t			 :	break;
+				case SDLK_z			 :	bitset &= ~(1<<4);	break;
+				case SDLK_RIGHT  :	bitset &= ~(1<<5);	break;
+				case SDLK_LEFT	 :	bitset &= ~(1<<6);	break;
+				case SDLK_SPACE  :	break;
+				case SDLK_F1		 :	break;
+        case SDLK_p      :	break;
+        default          : break;
+      } //code is added till here.
+		}
     if(event.type == SDL_KEYDOWN) {
 			/*std::cout<<event.key.keysym.sym<<'\t'<<SDLK_ESCAPE<<std::endl;
 			if( event.key.keysym.sym & SDLK_ESCAPE ) {
@@ -177,50 +207,82 @@ while ( not done ) {
 			
 			std::cout<<event.key.keysym.sym<<'\t'<<SDLK_ESCAPE<<std::endl;
       switch ( event.key.keysym.sym ) {
-        case SDLK_ESCAPE : bitset |= 1<<1;//done = true; clock.pause(); break;
-        case SDLK_q      : done = true; break;
+        case SDLK_ESCAPE : bitset |= 1<<1;break;//done = true; clock.pause(); break;
+        case SDLK_q      : bitset |= 1<<2;break;//done = true; break;
         case SDLK_t			 :
 				 	if(!keyCatch) {
-						keyCatch = true;
-						currentObject = (currentObject+1)%redorb.size();
-						viewport.setObjectToTrack(redorb[currentObject]);
+						bitset |= 1<<3;
+						//keyCatch = true;
+						//currentObject = (currentObject+1)%redorb.size();
+						//viewport.setObjectToTrack(redorb[currentObject]);
 					}
           break;
 				case SDLK_z			 :
-					hero->shoot(clock.getTicks());
-					sound[1];
+					bitset |= 1<<4;
+					/*hero->shoot(clock.getTicks());
+					sound[1];*/
 					break;
 				case SDLK_RIGHT  :
-					hero->right(ticks);
+					bitset |= 1<<5;
+					//hero->right(ticks);
 					break;
 				case SDLK_LEFT	 :
-					hero->left(ticks);
+					bitset |= 1<<6;
+					//hero->left(ticks);
 					break;
 				case SDLK_SPACE  :
-					hero->jump();
+					bitset |= 1<<7;
+					//hero->jump();
 					break;
 				case SDLK_F1		 :
+					bitset |= 1<<8;
 					if (!keyCatch) {
 						keyCatch = true;
-						if(!helpFlag) {
+						/*if(!helpFlag) {
 							helpFlag = true;
 							clock.pause();
 						}	else {
 							helpFlag = false;
 							clock.unpause();
-						}
+						}*/
 					}
 					break;
         case SDLK_p      :
+					bitset |= 1<<9;
 					if((!keyCatch) && (!helpFlag)) {
 						keyCatch = true;
-						if(clock.isPaused()) clock.unpause();
-						else clock.pause();
+						//if(clock.isPaused()) clock.unpause();
+						//else clock.pause();
 					}
           break;
         default          : break;
       }
-			if(bitset & (1<<1)) {bitset &= ~(1<<1); done = true; clock.pause(); break;}
-    }
- }
+			if(bitset & (1<<1)) { bitset &= ~(1<<1); done = true; clock.pause(); }
+			if(bitset & (1<<2)) { bitset &= ~(1<<2); done = true; }
+			if(bitset & (1<<3)) {
+				bitset &= ~(1<<3);
+				currentObject = (currentObject+1)%redorb.size();
+				viewport.setObjectToTrack(redorb[currentObject]);
+			}
+			if(bitset & (1<<4)) { hero->shoot(clock.getTicks()); }
+			if(bitset & (1<<5)) { hero->right(ticks); }
+			if(bitset & (1<<6)) { hero->left(ticks); }
+			if(bitset & (1<<7)) { bitset &= ~(1<<7); hero->jump(); }
+			if(bitset & (1<<8)) {
+				bitset &= ~(1<<8);
+				if(!helpFlag) {
+					helpFlag = true;
+					clock.pause();
+				} else {
+					helpFlag = false;
+					clock.unpause();
+				}
+			}
+			if(bitset & (1<<9)) {
+					bitset &= ~(1<<9);
+					if(clock.isPaused()) clock.unpause();
+					else clock.pause();
+				}
+		}
+	}
 }

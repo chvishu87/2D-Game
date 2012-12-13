@@ -52,7 +52,7 @@ private:
 	unsigned currentObject;
 
 	SDLSound sound;
-
+	bool del;
 	void checkForCollision();
 	void setRedOrb();
   void draw() const;

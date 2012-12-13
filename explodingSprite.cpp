@@ -14,6 +14,14 @@ ExplodingSprite::ExplodingSprite(const Sprite& s) :
 		//std::cout<<chunks.size()<<std::endl;
 }
 
+ExplodingSprite::ExplodingSprite(const Player& p) :
+	Sprite( Sprite(p.getPosition(), p.getVelocity(), p.getName(), p.getFrame()) ),
+	chunks(),
+	freeList(),
+	frames() {
+		makeChunks(Gamedata::getInstance()->getXmlInt("redorbChunkSize"));
+}
+
 ExplodingSprite::~ExplodingSprite() {
 //std::cout<<"exploding sprite destructor 1"<<std::endl;
   chunks.clear();

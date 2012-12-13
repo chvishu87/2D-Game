@@ -23,7 +23,9 @@ MultiFrameSprite::MultiFrameSprite(const Vector2f& pos, const Vector2f& vel,
 	currentFrame(0),
 	frameChange(0),
  	numberOfFrames( NUMBER_FRAMES ),
-	frameInterval( FRAME_INTERVAL )
+	frameInterval( FRAME_INTERVAL )/*,
+	bulletGap(0),
+	bellfacInstance(BulletFactory::getInstance())*/
  { }
 
 MultiFrameSprite::MultiFrameSprite(const MultiFrameSprite& s) :
@@ -34,7 +36,9 @@ MultiFrameSprite::MultiFrameSprite(const MultiFrameSprite& s) :
 	currentFrame(s.currentFrame),
 	frameChange(0),
  	numberOfFrames( NUMBER_FRAMES ),
-	frameInterval( FRAME_INTERVAL )
+	frameInterval( FRAME_INTERVAL )/*,
+	bulletGap(0),
+	bellfacInstance(BulletFactory::getInstance())*/
 { }
 
 void MultiFrameSprite::advanceFrame(Uint32 ticks) {
@@ -95,3 +99,16 @@ unsigned MultiFrameSprite::getPixel(Uint32 i, Uint32 j) const {
 	Uint32 *pixels = static_cast<Uint32 *>(frames[currentFrame]->getSurface()->pixels);
 	return pixels[ (y * frames[currentFrame]->getWidth()) + x ];
 }
+
+/*void MultiFrameSprite::shoot(int ticks) {
+	//std::cout<<getDirection()<<std::endl;
+	//std::cout<<ticks<<'\t'<<(ticks-bulletGap)<<std::endl;
+	if((ticks-bulletGap) >= 250) {
+		//std::cout<<"inside"<<std::endl; 
+		if(getDirection() == 1)
+			bullfacInstance.getBullet(X()+30,Y()+20,getDirection());
+		else if (getDirection() == 0)
+			bullfacInstance.getBullet(X(),Y()+20,getDirection());
+		bulletGap = ticks;
+	}
+}*/

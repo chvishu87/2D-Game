@@ -1,11 +1,13 @@
 #include <vector>
 #include <list>
 #include "chunk.h"
+#include "player.h"
 
 class ExplodingSprite : public Sprite {
 public:
   ExplodingSprite(const Sprite& s);
-  ~ExplodingSprite();
+	ExplodingSprite(const Player& p);
+	~ExplodingSprite();
   virtual void draw() const;
   virtual void update(Uint32 ticks);
   void makeChunks(unsigned int);

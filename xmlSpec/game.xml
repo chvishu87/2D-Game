@@ -49,6 +49,10 @@
   <redorbSpeed redorbXspeed="100" redorbYspeed="0"/>
   <redorbMaxSpeed redorbMaxXspeed="0" redorbMaxYspeed="0"/>
   <redorbTransparency>true</redorbTransparency>
+	<redorbChunkDistance>200</redorbChunkDistance>
+  <redorbChunkMaxSpeed redorbChunkMaxXspeed="0" redorbChunkMaxYspeed="0"/>
+  <redorbChunkSpeed redorbChunkXspeed="100" redorbChunkYspeed="0"/>
+	<redorbChunkSize>9</redorbChunkSize>
 </redorb>
 
 <orbChunk>
@@ -58,11 +62,11 @@
   <orbChunkWidth>40</orbChunkWidth>
   <orbChunkHeight>80</orbChunkHeight>
   <orbChunkLoc orbChunkX="40" orbChunkY="120"/>
-  <orbChunkSpeed orbChunkXspeed="100" orbChunkYspeed="0"/>
-  <redorbChunkMaxSpeed redorbChunkMaxXspeed="0" redorbChunkMaxYspeed="0"/>
   <orbChunkTransparency>true</orbChunkTransparency>
-	<orbChunkSize>9</orbChunkSize>
-	<redorbChunkDistance>200</redorbChunkDistance>
+  <orbChunkSpeed orbChunkXspeed="100" orbChunkYspeed="0"/>
+  <orbChunkMaxSpeed orbChunkMaxXspeed="0" orbChunkMaxYspeed="0"/>
+	<orbChunkDistance>200</orbChunkDistance>
+	<orbChunkSize>15</orbChunkSize>
 </orbChunk>
 
 <bullet>

@@ -7,7 +7,7 @@
 #include <vector>
 
 #include "drawable.h"
-
+//#include "bulletFactory.h"
 
 using std::vector;
 
@@ -39,6 +39,7 @@ public:
 
 /*private:
   string name;*/
+	//virtual void shoot(int ticks);
 protected:
   const vector<Frame *> frames;
 //	std::vector<Frame *>::const_iterator frame_iterator;
@@ -48,7 +49,9 @@ protected:
 	unsigned frameChange;
 	unsigned numberOfFrames;
 	unsigned frameInterval;
-
+	//int bulletGap;
+	//BulletFactory& bullfacInstance;
+	
 	void advanceFrame(Uint32 ticks);
 };
 
