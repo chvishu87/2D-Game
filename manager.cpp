@@ -110,9 +110,11 @@ void Manager::update(Uint32 ticks) {
 	bullets.update(ticks);
 	bgworld.update();
 	if(redorb.size() > 0) {
+		unsigned tick = clock.getTicks();
 		std::vector<Drawable*>::iterator it = redorb.begin();
 		while(it != redorb.end()) {
 			(*it)->update(ticks);
+			(static_cast<Enemy*>(*it))->shoot(tick, hero->X(), hero->getDirection());
 			++it;
 		}
 	}
@@ -152,7 +154,7 @@ while(i != li.end()) {
 	if(!collisionFound)
 		++i;
 }
-while( sprite  != redorb.end() ) {
+/*while( sprite  != redorb.end() ) {
 	if( collisionStrategy->execute(*hero, *(*sprite)) ) {
 		redorbEx.push_back( new ExplodingSprite( *hero ) );
 		del = true;
@@ -161,7 +163,7 @@ while( sprite  != redorb.end() ) {
 	} else {
 		++sprite;
 	}
-}
+}*/
 }
 
 void Manager::play() {
@@ -205,7 +207,7 @@ while ( not done ) {
 				clock.pause();
 			}*/
 			
-			std::cout<<event.key.keysym.sym<<'\t'<<SDLK_ESCAPE<<std::endl;
+			//std::cout<<event.key.keysym.sym<<'\t'<<SDLK_ESCAPE<<std::endl;
       switch ( event.key.keysym.sym ) {
         case SDLK_ESCAPE : bitset |= 1<<1;break;//done = true; clock.pause(); break;
         case SDLK_q      : bitset |= 1<<2;break;//done = true; break;
@@ -264,7 +266,7 @@ while ( not done ) {
 				currentObject = (currentObject+1)%redorb.size();
 				viewport.setObjectToTrack(redorb[currentObject]);
 			}
-			if(bitset & (1<<4)) { hero->shoot(clock.getTicks()); }
+			if(bitset & (1<<4)) { sound[1];hero->shoot(clock.getTicks()); }
 			if(bitset & (1<<5)) { hero->right(ticks); }
 			if(bitset & (1<<6)) { hero->left(ticks); }
 			if(bitset & (1<<7)) { bitset &= ~(1<<7); hero->jump(); }
