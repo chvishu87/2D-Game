@@ -6,6 +6,10 @@ Date: 10/24/2012
 
 Proj No: 2
 
+Note:
+	The project started with a basic framework of classes provided by the professor (Dr Brian Malloy).
+	I have extended the framework to include functionality and design into the project.
+
 Description:
 	1. The animation has a background and some multiframe sprites that keep moving.
 	2. The SDL_Surface and Frames classes are implemented as flyweight pattern and they have factory classes.
