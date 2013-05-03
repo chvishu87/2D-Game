@@ -1,4 +1,8 @@
-//#include "manager.h"
+/************************************************************
+ * Author : Viswanath Chennuru
+ * *********************************************************/
+
+
 #include "menuManager.h"
 Gamedata* Gamedata::instance;
 
