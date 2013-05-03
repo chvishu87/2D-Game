@@ -1,5 +1,3 @@
-// Brian Malloy        Game Construction
-
 //#include "manager.h"
 #include "menuManager.h"
 Gamedata* Gamedata::instance;
